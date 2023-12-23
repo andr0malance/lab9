@@ -1,0 +1,51 @@
+using System;
+
+class File
+{
+    public string FileName { get; set; }
+    public long Size { get; set; }
+    public DateTime CreationDate { get; set; }
+    public int AccessCount { get; set; }
+}
+
+class Program
+{
+    static void Main()
+    {
+        // Создание массива объектов File
+        File[] files = new File[]
+        {
+            new File { FileName = "name1.txt", Size = 250, CreationDate = DateTime.Now.AddDays(-5), AccessCount = 30 },
+            new File { FileName = "name2.txt", Size = 300, CreationDate = DateTime.Now.AddDays(-3), AccessCount = 11 },
+            new File { FileName = "name3.txt", Size = 800, CreationDate = DateTime.Now.AddDays(-1), AccessCount = 24 },
+            new File { FileName = "name4.txt", Size = 905, CreationDate = DateTime.Now.AddDays(-2), AccessCount = 35 },
+            new File { FileName = "name5.txt", Size = 115, CreationDate = DateTime.Now.AddDays(-4), AccessCount = 50 },
+        };
+
+        // Заданные условия
+        long maxSize = 600;
+        int minAccessCount = 25;
+
+        // Вывод списка файлов, размер которых превышает заданный
+        Console.WriteLine("Список файлов, размер которых превышает {0}:", maxSize);
+        foreach (File file in files)
+        {
+            if (file.Size > maxSize)
+            {
+                Console.WriteLine(file.FileName);
+            }
+        }
+
+        // Вывод списка файлов, число обращений к которым превышает заданное
+        Console.WriteLine("\nСписок файлов, число обращений к которым превышает {0}:", minAccessCount);
+        foreach (File file in files)
+        {
+            if (file.AccessCount > minAccessCount)
+            {
+                Console.WriteLine(file.FileName);
+            }
+        }
+
+        Console.ReadLine();
+    }
+}
